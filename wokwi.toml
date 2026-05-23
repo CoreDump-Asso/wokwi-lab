@@ -1,0 +1,9 @@
+[wokwi]
+version = 1
+firmware = ".pio/build/esp32/firmware.bin"
+elf = ".pio/build/esp32/firmware.elf"
+
+[[chip]]
+name = "bme280"
+binary = "chips/bme280.chip.wasm"
+config = "chips/bme280.chip.json"

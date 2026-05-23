@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "author": "Ena-Shepherd",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": -1.14,
+      "left": -3.1,
+      "rotate": -90,
+      "attrs": {}
+    },
+    { "type": "chip-bme280", "id": "chip1", "top": 164.22, "left": 177.6, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:3V3", "chip1:Vdd", "red", [ "v0" ] ],
+    [ "chip1:Vddio", "esp:3V3", "red", [ "h0" ] ],
+    [ "esp:GND.1", "chip1:GND.1", "black", [ "v0" ] ],
+    [ "esp:18", "chip1:SCK", "green", [ "v-19.2", "h268.8", "v144", "h-9.6" ] ],
+    [ "esp:23", "chip1:SDI", "green", [ "v-28.8", "h345.6", "v163.2" ] ],
+    [ "esp:19", "chip1:SDO", "cyan", [ "v-9.6", "h134.4", "v153.6" ] ],
+    [ "esp:27", "chip1:CS", "green", [ "v67.05", "h230.4", "v-19.2" ] ]
+  ],
+  "dependencies": { "chip-bme280": "github:bonnyr/wokwi-bme280-custom-chip@0.0.25" }
+}
