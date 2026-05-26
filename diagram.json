@@ -1,28 +1,68 @@
 {
   "version": 1,
-  "author": "Ena-Shepherd",
+  "author": "Uri Shaked",
   "editor": "wokwi",
   "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
     {
-      "type": "board-esp32-devkit-c-v4",
-      "id": "esp",
-      "top": -1.14,
-      "left": -3.1,
-      "rotate": -90,
-      "attrs": {}
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -18.9,
+      "left": 148.2,
+      "attrs": { "humidity": "42.5", "temperature": "19.9" }
     },
-    { "type": "chip-bme280", "id": "chip1", "top": 164.22, "left": 177.6, "attrs": {} }
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 90.35,
+      "left": -67.2,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 99.95,
+      "left": -67.2,
+      "attrs": { "value": "1000" }
+    },
+    { "type": "wokwi-led", "id": "led1", "top": 44.4, "left": -121, "attrs": { "color": "blue" } },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 44.4,
+      "left": -140.2,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 80.75,
+      "left": -67.2,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": 44.4,
+      "left": -101.8,
+      "attrs": { "color": "red" }
+    }
   ],
   "connections": [
-    [ "esp:RX", "$serialMonitor:TX", "", [] ],
-    [ "esp:TX", "$serialMonitor:RX", "", [] ],
-    [ "esp:3V3", "chip1:Vdd", "red", [ "v0" ] ],
-    [ "chip1:Vddio", "esp:3V3", "red", [ "h0" ] ],
-    [ "esp:GND.1", "chip1:GND.1", "black", [ "v0" ] ],
-    [ "esp:18", "chip1:SCK", "green", [ "v-19.2", "h268.8", "v144", "h-9.6" ] ],
-    [ "esp:23", "chip1:SDI", "green", [ "v-28.8", "h345.6", "v163.2" ] ],
-    [ "esp:19", "chip1:SDO", "cyan", [ "v-9.6", "h134.4", "v153.6" ] ],
-    [ "esp:27", "chip1:CS", "green", [ "v67.05", "h230.4", "v-19.2" ] ]
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "dht1:SDA", "esp:D15", "green", [ "v0" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "esp:D26", "r1:2", "blue", [ "v-5", "h-23" ] ],
+    [ "esp:D27", "r2:2", "blue", [ "v-5.2", "h-23" ] ],
+    [ "r1:1", "led1:A", "red", [ "h-28.8", "v-9.6" ] ],
+    [ "r2:1", "led2:A", "red", [ "h-38.4" ] ],
+    [ "led2:C", "esp:GND.2", "black", [ "h0.4", "v43.4" ] ],
+    [ "led1:C", "esp:GND.2", "black", [ "h0.4", "v91.4" ] ],
+    [ "r3:2", "esp:D25", "blue", [ "h23" ] ],
+    [ "r3:1", "led3:A", "red", [ "v0" ] ],
+    [ "led3:C", "esp:GND.2", "black", [ "v0" ] ]
   ],
-  "dependencies": { "chip-bme280": "github:bonnyr/wokwi-bme280-custom-chip@0.0.25" }
+  "dependencies": {}
 }
