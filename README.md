@@ -2,6 +2,8 @@
 
 IoT demo using Wokwi software
 
+![1779759853970](image/README/1779759853970.png)
+
 ## How to use :
 
 - Install Platform.io and Wokwi extensions for VSCode
